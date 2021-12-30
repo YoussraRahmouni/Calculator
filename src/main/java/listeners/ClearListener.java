@@ -27,7 +27,6 @@ public class ClearListener implements ActionListener {
         this.resultTxt = resultTxt;
         this.field=field;
         button.addActionListener(this);
-
     }
 
     @Override

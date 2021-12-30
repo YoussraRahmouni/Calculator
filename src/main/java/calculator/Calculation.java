@@ -1,7 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * All members and methods of this class are static 
+ * Because they are independent of other classes
+ * And do not need an instance creation each time
+ * @field operations stores operations given by the user 
+ * @field fields stores numbers given by the user
+ * @method calculate returns the result of calculations 
+ * @return of the method is stored as the first element of fields 
+ * To be reused in future operations
  */
 package calculator;
 
@@ -62,5 +67,4 @@ public class Calculation {
 
         return fields.get(0);
     }
-
 }
