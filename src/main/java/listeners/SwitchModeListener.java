@@ -22,9 +22,9 @@ public class SwitchModeListener implements ActionListener {
         this.layout = layout;
         button.addActionListener(this);
     }
-       
+
     @Override
     public void actionPerformed(ActionEvent e) {
         layout.getjPanel4().setVisible(true);
-    }  
+    }
 }

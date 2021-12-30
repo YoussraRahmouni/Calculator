@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * This class defines a custom listener for the clear button 
  */
 package listeners;
 
@@ -25,15 +23,19 @@ public class ClearListener implements ActionListener {
     public ClearListener(JButton button, JTextField operationTxt, JTextField resultTxt, Field field) {
         this.operationTxt = operationTxt;
         this.resultTxt = resultTxt;
-        this.field=field;
+        this.field = field;
         button.addActionListener(this);
     }
 
+    //Override the default actionPerformed method
     @Override
     public void actionPerformed(ActionEvent e) {
-        Calculation.fields.clear();
-        Calculation.operations.clear();
-        field.setField("");
+        // Resets the fields arraylist
+        // Resets the operations arraylist
+        Calculation.resetCalculation();
+        // clears the istance of field
+        field.emptyField();
+        // clears textFields
         operationTxt.setText("");
         resultTxt.setText("");
         System.out.println(Calculation.fields);

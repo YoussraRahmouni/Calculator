@@ -32,18 +32,18 @@ public class Calculation {
 
     public static String calculate(ArrayList<String> fields, ArrayList<String> operations) {
         for (int i = 0; i < operations.size(); i++) {
-            Float f;
+            Double d;
             switch (operations.get(i)) {
                 case "x":
-                    f = Float.parseFloat(fields.get(i)) * Float.parseFloat(fields.get(i + 1));
-                    fields.set(i, String.valueOf(f));
+                    d = Double.parseDouble(fields.get(i)) * Double.parseDouble(fields.get(i + 1));
+                    fields.set(i, String.valueOf(d));
                     fields.remove(i + 1);
                     operations.remove(i);
                     break;
                 case "/":
 
-                    f = Float.parseFloat(fields.get(i)) / Float.parseFloat(fields.get(i + 1));
-                    fields.set(i, String.valueOf(f));
+                    d = Double.parseDouble(fields.get(i)) / Double.parseDouble(fields.get(i + 1));
+                    fields.set(i, String.valueOf(d));
                     fields.remove(i + 1);
                     operations.remove(i);
                     break;
@@ -51,20 +51,71 @@ public class Calculation {
             }
         }
         for (int i = 0; i < operations.size(); i++) {
-            if ("+".equals(operations.get(i))) {
-                Float f = Float.parseFloat(fields.get(i)) + Float.parseFloat(fields.get(i + 1));
-                fields.set(i, String.valueOf(f));
-                fields.remove(i + 1);
-                operations.remove(i);
-            }
-            if (!operations.isEmpty() && "-".equals(operations.get(i))) {
-                Float f = Float.parseFloat(fields.get(i)) - Float.parseFloat(fields.get(i + 1));
-                fields.set(i, String.valueOf(f));
-                fields.remove(i + 1);
-                operations.remove(i);
+            Double d;
+            switch (operations.get(i)) {
+                case "+":
+                    d = Double.parseDouble(fields.get(i)) + Double.parseDouble(fields.get(i + 1));
+                    fields.set(i, String.valueOf(d));
+                    fields.remove(i + 1);
+                    operations.remove(i);
+                    break;
+                case "-":
+
+                    d = Double.parseDouble(fields.get(i)) - Double.parseDouble(fields.get(i + 1));
+                    fields.set(i, String.valueOf(d));
+                    fields.remove(i + 1);
+                    operations.remove(i);
+                    break;
+
             }
         }
-
         return fields.get(0);
+    }
+
+    public static String calculate() {
+        for (int i = 0; i < operations.size(); i++) {
+            Double d;
+            switch (operations.get(i)) {
+                case "x":
+                    d = Double.parseDouble(fields.get(i)) * Double.parseDouble(fields.get(i + 1));
+                    fields.set(i, String.valueOf(d));
+                    fields.remove(i + 1);
+                    operations.remove(i);
+                    break;
+                case "/":
+
+                    d = Double.parseDouble(fields.get(i)) / Double.parseDouble(fields.get(i + 1));
+                    fields.set(i, String.valueOf(d));
+                    fields.remove(i + 1);
+                    operations.remove(i);
+                    break;
+
+            }
+        }
+        for (int i = 0; i < operations.size(); i++) {
+            Double d;
+            switch (operations.get(i)) {
+                case "+":
+                    d = Double.parseDouble(fields.get(i)) + Double.parseDouble(fields.get(i + 1));
+                    fields.set(i, String.valueOf(d));
+                    fields.remove(i + 1);
+                    operations.remove(i);
+                    break;
+                case "-":
+
+                    d = Double.parseDouble(fields.get(i)) - Double.parseDouble(fields.get(i + 1));
+                    fields.set(i, String.valueOf(d));
+                    fields.remove(i + 1);
+                    operations.remove(i);
+                    break;
+
+            }
+        }
+        return fields.get(0);
+    }
+
+    public static void resetCalculation() {
+        operations.clear();
+        fields.clear();
     }
 }

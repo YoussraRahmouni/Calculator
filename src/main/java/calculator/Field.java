@@ -24,4 +24,7 @@ public class Field {
     public void setField(String field) {
         this.field = field;
     }
+    public void emptyField(){
+        this.field = "";
+    }
 }

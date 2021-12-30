@@ -47,11 +47,10 @@ public class OperatorListener implements ActionListener {
                         "Invalid format, insert number first",
                         "Syntax error",
                         JOptionPane.ERROR_MESSAGE);
-                System.out.println("teeeeeest");
             } else {
                 operationTxt.setText(operationTxt.getText() + value);
                 Calculation.operations.add(value);
-                field.setField("");
+                field.emptyField();
                 Calculation.setOPERATION_FLAG(true);
             }
         } else {

@@ -39,7 +39,7 @@ public class EqualsListener implements ActionListener {
         if (!"".equals(field.getField())) {
             Calculation.fields.add(field.getField());
         }
-        field.setField("");
+        field.emptyField();
         Calculation.setOPERATION_FLAG(false);
         System.out.println(Calculation.fields);
         System.out.println(Calculation.operations);
@@ -49,9 +49,20 @@ public class EqualsListener implements ActionListener {
                     "Syntax error",
                     JOptionPane.ERROR_MESSAGE);
         } else {
-            String result = Calculation.calculate(Calculation.fields, Calculation.operations);
-            resultTxt.setText(Calculation.calculate(Calculation.fields, Calculation.operations));
-            operationTxt.setText(Calculation.calculate(Calculation.fields, Calculation.operations));
+            String result = Calculation.calculate();
+            Double res = Double.parseDouble(Calculation.calculate());
+            System.out.println(res);
+            // res == Float.POSITIVE_INFINITY ||
+            if( res == Double.POSITIVE_INFINITY || res.isNaN() ){
+                JOptionPane.showMessageDialog(layout,
+                    "Invalid format, division by zero is not allowed",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+            resultTxt.setText(Calculation.calculate());
+            operationTxt.setText(Calculation.calculate());
+            }
         }
     }
 }
