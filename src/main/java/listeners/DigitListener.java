@@ -20,6 +20,14 @@ public class DigitListener implements ActionListener {
     private Field field;
     private JTextField operationTxt;
     private JTextField resultTxt;
+    /**
+     * Constructor of digit listener
+     * @param value
+     * @param button
+     * @param field
+     * @param operationTxt
+     * @param resultTxt 
+     */
 
     public DigitListener(String value, JButton button, Field field, JTextField operationTxt, JTextField resultTxt) {
         this.value = value;
@@ -32,19 +40,19 @@ public class DigitListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // if an operation has already been calculated and the stored result won't be used 
-        // First button clicked after enter is a digit
+        // If first button clicked after enter is a digit, the stored result won't be used
         if (Calculation.fields.size() == 1 && !Calculation.isOPERATION_FLAG() && Calculation.operations.isEmpty()) {
             Calculation.resetCalculation();
             operationTxt.setText(value);
             resultTxt.setText("");
             field.setField(value);
-        } else {
+        } 
+        // If an operation is clicked the stored result is used as first field of fields
+        else {
             operationTxt.setText(operationTxt.getText() + value);
             field.setField(field.getField() + value);
             Calculation.setOPERATION_FLAG(false);
-            System.out.println("test");
-            System.out.println(Calculation.fields);
+            //System.out.println(Calculation.fields);
         }
     }
 

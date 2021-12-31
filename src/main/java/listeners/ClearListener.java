@@ -20,25 +20,42 @@ public class ClearListener implements ActionListener {
     private JTextField resultTxt;
     private Field field;
 
+    /**
+     * 
+     * @param button
+     * @param operationTxt
+     * @param resultTxt
+     * @param field 
+     */
     public ClearListener(JButton button, JTextField operationTxt, JTextField resultTxt, Field field) {
         this.operationTxt = operationTxt;
         this.resultTxt = resultTxt;
         this.field = field;
+        // Add a listener to the button instance 
         button.addActionListener(this);
     }
 
-    //Override the default actionPerformed method
+    /**
+     * define the custom actionPerformed method
+     * @param e 
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
-        // Resets the fields arraylist
-        // Resets the operations arraylist
+        /**
+         * Resets the fields arraylist
+         * Resets the operations arraylist
+         */
         Calculation.resetCalculation();
-        // clears the istance of field
+        /**
+         * Clears the istance of field
+         */
         field.emptyField();
-        // clears textFields
+        /**
+         * clearing textFields for new operations
+         */
         operationTxt.setText("");
         resultTxt.setText("");
-        System.out.println(Calculation.fields);
-        System.out.println(Calculation.operations);
+        //System.out.println(Calculation.fields);
+        //System.out.println(Calculation.operations);
     }
 }

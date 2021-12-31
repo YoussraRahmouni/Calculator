@@ -7,7 +7,9 @@ package listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
+import javax.swing.JToggleButton;
 import views.Layout;
 
 /**
@@ -18,13 +20,28 @@ public class SwitchModeListener implements ActionListener {
 
     private Layout layout;
 
-    public SwitchModeListener(JButton button, Layout layout) {
+    /**
+     * SwitchModeListener Constructor
+     * @param button
+     * @param layout 
+     */
+    public SwitchModeListener(JToggleButton button, Layout layout) {
         this.layout = layout;
         button.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        layout.getjPanel4().setVisible(true);
+        AbstractButton abstractButton = (AbstractButton) e.getSource();
+        /**
+         * return state of the toggle button
+         */
+        boolean selected = abstractButton.getModel().isSelected();
+        if(selected){
+            layout.getjPanel4().setVisible(true);
+        }
+        else{
+            layout.getjPanel4().setVisible(false);
+        }
     }
 }

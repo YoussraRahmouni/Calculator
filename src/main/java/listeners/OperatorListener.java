@@ -25,6 +25,15 @@ public class OperatorListener implements ActionListener {
     private JTextField operationTxt;
     private Layout layout;
 
+    /**
+     * OperatorListener Constructor
+     *
+     * @param value
+     * @param button
+     * @param field
+     * @param operationTxt
+     * @param layout
+     */
     public OperatorListener(String value, JButton button, Field field, JTextField operationTxt, Layout layout) {
         this.value = value;
         this.field = field;
@@ -37,25 +46,45 @@ public class OperatorListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        // pour pouvoir enchainer les operations mm aprs egale 
-        if (!"".equals(field.getField())) {
+        /**
+         * Check if there is a stored result
+         */
+        if (!"".equals(field.getField()) && (field.isSCIENTIFIC_FLAG() == false)) {
             Calculation.fields.add(field.getField());
         }
+        
         if (!Calculation.isOPERATION_FLAG()) {
+            /**
+             * Result is empty and first clicked button is an operation
+             * Display syntax eroor to the user
+             */
             if ("".equals(field.getField()) && Calculation.fields.isEmpty()) {
                 JOptionPane.showMessageDialog(layout,
                         "Invalid format, insert number first",
                         "Syntax error",
                         JOptionPane.ERROR_MESSAGE);
-            } else {
+            }
+            /**
+             * If a scientific operation has been clicked before
+             */
+            else {
+                if (field.isSCIENTIFIC_FLAG()) {
+                    /**
+                     * method that calculates last clicked scientific operations
+                     */
+                    Calculation.calculateScientificField(field);
+                }
                 operationTxt.setText(operationTxt.getText() + value);
                 Calculation.operations.add(value);
                 field.emptyField();
                 Calculation.setOPERATION_FLAG(true);
             }
-        } else {
+        } 
+        /**
+         * Update display if multiple operations are clicked sequentially
+         */
+        else {
             Calculation.operations.set(Calculation.operations.size() - 1, value);
-            // seeting old text value to ""
             operationTxt.setText("");
             for (int i = 0; i < Calculation.fields.size(); i++) {
                 // new text value
@@ -64,9 +93,7 @@ public class OperatorListener implements ActionListener {
 
             }
         }
-        //Calculation.setOPERATION_FLAG(true);
-        System.out.println("added operation");
-        System.out.println(Calculation.operations);
-        System.out.println(Calculation.fields);
+        //System.out.println(Calculation.operations);
+        //System.out.println(Calculation.fields);
     }
 }
